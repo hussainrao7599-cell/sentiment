@@ -17,12 +17,13 @@ if btn:
        sent=blob.sentiment[0]
        if sent<0:
               st.error("Negative Sentiment")
-              st.image("C:\\stream_programs\\neg_senti.png")
+              st.image("C:\stream_programs\neg_senti.png")
        elif sent>0:
               st.success("Positive Sentiment")
-              st.image("C:\\stream_programs\\pos_senti.png")
+              st.image("C:\stream_programs\pos_senti.png")
        else:
               st.warning("Neutral Sentiment")
-              st.image("C:\\stream_programs\\neut_senti.png")
+              st.image("C:\stream_programs\neut_senti.png")
+
 
 
