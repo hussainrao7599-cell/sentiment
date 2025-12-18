@@ -1,29 +1,37 @@
-import streamlit  as st
+import streamlit as st
 from textblob import TextBlob
-st.sidebar.title("About us")
-st.sidebar.text("""We Are Student At Ducat & Learning Machine Learning""")
-st.sidebar.title("Contact Us")
-st.sidebar.text("""hussainrao7599@gmail.com
-aadilrao8445@gmail.com
-asadrao9058@gmail.com""")
 
-st.title("Sentiment Analysis Project")
+st.set_page_config(page_title="Sentiment Analysis App", page_icon="😊")
 
-text=st.text_input("**Enter Text**")
-btn=st.button("predict")
+st.title("Sentiment Analysis App")
+st.write("Enter any text and check its sentiment")
 
-if btn:
-       blob=TextBlob (text)
-       sent=blob.sentiment[0]
-       if sent<0:
-              st.error("Negative Sentiment")
-              st.image("C:\stream_programs\neg_senti.png")
-       elif sent>0:
-              st.success("Positive Sentiment")
-              st.image("C:\stream_programs\pos_senti.png")
-       else:
-              st.warning("Neutral Sentiment")
-              st.image("C:\stream_programs\neut_senti.png")
+# Text input
+user_text = st.text_area("Enter your text here")
+
+# Analyze button
+if st.button("Analyze Sentiment"):
+    if user_text.strip() == "":
+        st.warning("Please enter some text")
+    else:
+        blob = TextBlob(user_text)
+        polarity = blob.sentiment.polarity
+
+        st.subheader("Result")
+        st.write(f"Polarity Score: {polarity}")
+
+        if polarity > 0:
+            st.success("Positive Sentiment 😊")
+            st.image("pos_senti.png")
+        elif polarity < 0:
+            st.error("Negative Sentiment 😠")
+            st.image("neg_senti.png")
+        else:
+            st.info("Neutral Sentiment 😐")
+            st.image("neut_senti.png")
+st.markdown("---")
+st.caption("Built with Streamlit & TextBlob")
+
 
 
 
